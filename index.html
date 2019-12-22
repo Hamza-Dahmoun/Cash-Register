@@ -51,6 +51,48 @@
     <h1>Cash Register</h1>
     <div>
         <label for="textInput">Enter Data</label>
+        <table id="cash-in-drawer">
+            <th>
+                <td>Currency Unit</td>
+                <td>Amount</td>
+            </th>
+            <tr>
+                <td>Penny</td>
+                <td><input type="text" id="pennyCashInput"></td>
+            </tr>
+            <tr>
+                <td>Nickel</td>
+                <td><input type="text" id="nickelCashInput"></td>
+            </tr>
+            <tr>
+                <td>Dime</td>
+                <td><input type="text" id="dimeCashInput"></td>
+            </tr>
+            <tr>
+                <td>Quarter</td>
+                <td><input type="text" id="quarterCashInput"></td>
+            </tr>
+            <tr>
+                <td>Dollar</td>
+                <td><input type="text" id="dollarCashInput"></td>
+            </tr>
+            <tr>
+                <td>Five Dollars</td>
+                <td><input type="text" id="fiveDollarsCashInput"></td>
+            </tr>
+            <tr>
+                <td>Ten Dollars</td>
+                <td><input type="text" id="tenDollarsCashInput"></td>
+            </tr>
+            <tr>
+                <td>Twenty Dollars</td>
+                <td><input type="text" id="twentyDollarsCashInput"></td>
+            </tr>
+            <tr>
+                <td>One-hundred Dollars</td>
+                <td><input type="text" id="oneHundredDollarsCashInput"></td>
+            </tr>
+        </table>
         <input type="text" id="priceInput" placeholder="Enter Price">
         <input type="text" id="cashInput" placeholder="Enter Cash">
         <button id="buyBtn" onclick="buy()">Buy</button>
