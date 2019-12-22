@@ -199,3 +199,19 @@ function getCombination(change, cid){
         return {status: "INSUFFICIENT_FUNDS", change: []};
     }        
 }
+
+function cidNotEmpty(cid, comb){
+    //'cid' is considered empty if the sum of money in there equal the sum of money in 'combination'
+    if(cid.length == comb.length){
+     for(let i=0; i<cid.length; i++){
+         if(cid[i][1] == comb[i][1]){
+             //do nothing, let check the next currency
+         }
+         else{
+             //so this currency seems to have more in 'cid' than in 'comb'.. lets return true
+          return true;   
+         }
+     }
+        return false;
+    }
+}
