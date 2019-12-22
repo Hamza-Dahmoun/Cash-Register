@@ -44,6 +44,23 @@
             background-color:#555;
             transition-duration: 0.5s;
         }
+        #cash-in-drawer{
+            width: auto;margin-left: auto; margin-right: auto;
+            margin-top:20px;margin-bottom: 20px;
+            border:1px solid #efefef;
+            background-color: #efefef;
+        }
+        td{
+            margin:1px;
+        }
+        tr.head td{
+            background-color: #555;
+            color:#fff;
+            padding-top:10px;padding-bottom:10px;
+        }
+        table input{
+            height:25px;
+        }
     </style>
 </head>
 
@@ -52,10 +69,10 @@
     <div>
         <label for="textInput">Enter Data</label>
         <table id="cash-in-drawer">
-            <th>
+            <tr class="head">
                 <td>Currency Unit</td>
                 <td>Amount</td>
-            </th>
+            </tr>
             <tr>
                 <td>Penny</td>
                 <td><input type="text" id="pennyCashInput"></td>
