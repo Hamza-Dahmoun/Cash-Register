@@ -199,15 +199,18 @@ function getCombination(change, cid){
             for(let i=0; i<combination.length; i++){
                 reveresedCombination.unshift(combination[i]);
             }
+            document.getElementById("result").innerHTML = "{status: \"OPEN\", change: " + reveresedCombination.filter(elt => elt[1]>0)+"}";
             return {status: "OPEN", change: reveresedCombination.filter(elt => elt[1]>0)};
         }
         else{
             //so we don't have more chas in the 'cid'
+            document.getElementById("result").innerHTML = "{status: \"CLOSED\", change: " + combination + "}";
             return {status: "CLOSED", change: combination};
         }        
     }
     else{
         //so 'change' is not fully paid
+        document.getElementById("result").innerHTML = "{status: \"INSUFFICIENT_FUNDS\", change: []"+ "}";
         return {status: "INSUFFICIENT_FUNDS", change: []};
     }        
 }
