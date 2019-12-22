@@ -113,7 +113,6 @@ function removeZero_fromCid(cid) {
 function getCombination(change, cid){
     //this function takes a cid array and check if there is a combination of currencies equal to 'change' or not, 
     //return the combination if it exists,
-    //return false if the combination doesn't exist
 
     //How To?
 
@@ -149,6 +148,10 @@ function getCombination(change, cid){
     //change = change % 0.01 = 0.0001
     //So the last modulo result is not zero, Return false
 
+    //N.B: In this function we used the method Array.unshift() instead of Array.push() to add elements to the end of 'combination'
+    //instead of adding elements to the begining of the 'combination' becuz we started looping thru 'cid' array elements from the end
+    //to the begining ..... we do this to make 'cid' and 'combination' easy to compare to each other in the function cidNotEmpty()
+
 
     let combination = [];//Example: [["FIVE", 5],["DOLLAR", 2]]
     let currencyValues = [0.01, 0.05, 0.1, 0.25, 1, 5, 10, 20, 100];
@@ -156,7 +159,10 @@ function getCombination(change, cid){
         if(change != 0){
             if(change == change % currencyValues[i]){
                 //so the modulo is equal to the origin 'change', it means change is less than currencyValues[i]
-                //lets do nothing, and just move to the next 'currency'
+                //lets add this 'currency' to the 'combination' but with 0 as value
+                let currency = cid[i][0];
+                combination.unshift([currency, 0]);
+
             }        
             else{
                 //so the modulo is different than the origin 'change'
@@ -168,21 +174,22 @@ function getCombination(change, cid){
                     //so lets just take the whole amount of this 'currency'
                     amountNeededFromCurrency = cid[i][1];
                     change = Math.round((change - amountNeededFromCurrency)*100)/100 ;
-                    combination.push([currency, amountNeededFromCurrency]);
+                    combination.unshift([currency, amountNeededFromCurrency]);
                 }
                 else{
                     //we don't have enough money from this currency, so just move forward to the next currency
                     //so we see that this 'currency' has enough money to reply to our need, lets take the needed amount
                     //amountNeededFromCurrency = cid[i][1];
                     change = Math.round((change - amountNeededFromCurrency)*100)/100;
-                    combination.push([currency, amountNeededFromCurrency]);
+                    combination.unshift([currency, amountNeededFromCurrency]);
                 }
             }
         }
-        /*else{
-            //so the 'change' is fully paid
-            return {status: "OPEN", change: combination};
-        }        */
+        else{
+            //so the 'change' is fully paid, lets add the remaining 'currencies' to the 'combination' but with 0 as value
+            let currency = cid[i][0];
+                combination.unshift([currency, 0]);
+        }        
     }
     if(change==0){
         if(cidNotEmpty(cid, combination)){
