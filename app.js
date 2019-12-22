@@ -193,8 +193,13 @@ function getCombination(change, cid){
     }
     if(change==0){
         if(cidNotEmpty(cid, combination)){
-            //so we still have more cash in the 'cid'
-            return {status: "OPEN", change: combination};
+            //so we still have more cash in the 'cid', lets return status=OPEN and 'combination' contains only currencies with positive value,
+            //those currencies should be ordered from highest to lowest
+            let reveresedCombination = [];
+            for(let i=0; i<combination.length; i++){
+                reveresedCombination.unshift(combination[i]);
+            }
+            return {status: "OPEN", change: reveresedCombination.filter(elt => elt[1]>0)};
         }
         else{
             //so we don't have more chas in the 'cid'
@@ -222,3 +227,12 @@ function cidNotEmpty(cid, comb){
         return false;
     }
 }
+/*function cidNotEmpty(cid){
+    //'cid' is considered empty if all currencies have no available money
+    for(let i=0; i<cid.length; i++){
+        if(cid[i][1] > 0){
+            return true;
+        }
+    }
+    return false;
+}*/
