@@ -20,7 +20,6 @@ function checkCashRegister() {
     var change;
     // Here is your change, ma'am.
     getEntries();
-    console.log(cid);
     //How To?
     //0- change = cash - price
     //1- If sum of all values in 'cid' is less than 'change' then return {status: "INSUFFICIENT_FUNDS", change: []}
@@ -31,11 +30,12 @@ function checkCashRegister() {
     if (cidsum < change) {
         return { status: "INSUFFICIENT_FUNDS", change: [] };
     }
+    else if(cidsum == change){
+        
+        return {status: "CLOSED", change: removeZero_fromCid(cid)}
+    }
     return change;
     
-    
-    
-
 }
 
 // Example cash-in-drawer array:
@@ -80,4 +80,10 @@ function cidSum(cid) {
     //lets calculate the sum of all elements in 'copy' array
     copy.map(elt => sum = sum + elt[1]);
     return sum;
+}
+
+function removeZero_fromCid(cid){
+    //this function takes 'cid' array and returns a copy of it but without items that have 'value' == 0
+    let copy =[...cid];
+    return copy.filter(elt => elt[1]>0);
 }
