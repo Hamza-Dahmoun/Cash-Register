@@ -28,6 +28,22 @@
         p {
             font-size: 40px;
         }
+        button{
+            background-color: #fff;
+            color:#555;
+            transition-duration: 0.5s;
+            padding-left: 20px;
+            padding-right: 20px;
+            height: 35px;
+            border-radius: 2px;
+            border: 1px solid #efefef;
+            cursor: pointer;
+        }
+        button:hover{
+            color: #fff;
+            background-color:#555;
+            transition-duration: 0.5s;
+        }
     </style>
 </head>
 
@@ -38,6 +54,7 @@
         <input type="text" id="priceInput" placeholder="Enter Price">
         <input type="text" id="cashInput" placeholder="Enter Cash">
         <input type="text" id="cidInput" placeholder="Enter CID">
+        <button id="buyBtn" onclick="buy()">Buy</button>
     </div>
 
     <p id="result"></p>
