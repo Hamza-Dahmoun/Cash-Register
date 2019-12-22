@@ -19,7 +19,15 @@ as the value of the change key.
 function checkCashRegister(price, cash, cid) {
     var change;
     // Here is your change, ma'am.
-    getEntries()
+    getEntries();
+
+    //How To?
+    //0- change = cash - price
+    //1- If sum of all values in 'cid' is less than 'change' then return {status: "INSUFFICIENT_FUNDS", change: []}
+    //2- If there is no 'cid' combination equal to 'change' then return {status: "INSUFFICIENT_FUNDS", change: []}
+    //3- If sum of al 'cid' is equal to 'change' then return {status: "CLOSED", change: [cid]} 
+    //4- else, return {status: "OPEN", change: ['cid' combination equal to 'change']}
+    
     return change;
   }
   
@@ -37,11 +45,17 @@ function checkCashRegister(price, cash, cid) {
   //checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]); 
 
   function getEntries(){
+      //get price and parse it
     price = parseFloat(document.getElementById("priceInput").value);
+    //get cash and parse it
     cash = parseFloat(document.getElementById("cashInput").value);
+    //get an array of input tags located in the table
     let tableInputs = document.querySelectorAll("table input");
+    //for each input tag we'll take its id and make it upperCase and its value, and push id & value into cid array
     for(let i=0; i<tableInputs.length; i++){
+        //'id' we'll be uppsercasen and for id='one_hundred' we'll replace underscore by white space
         let currencyUnit = tableInputs[i].id.toString().toUpperCase().replace("_", " ");
+        //get the value and parse it, if there is no data then we'll consider it 0
         let value = parseFloat(tableInputs[i].value);
         cid.push([currencyUnit, value]);
     }
